@@ -2,6 +2,7 @@ import { Project } from 'entities';
 import { catchErrors } from 'errors';
 import { findEntityOrThrow, updateEntity } from 'utils/typeorm';
 import { issuePartial } from 'serializers/issues';
+import "express-async-errors";
 
 export const getProjectWithUsersAndIssues = catchErrors(async (req, res) => {
   const project = await findEntityOrThrow(Project, req.currentUser.projectId, {

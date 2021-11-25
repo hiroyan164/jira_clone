@@ -9,6 +9,7 @@ import { addRespondToResponse } from 'middleware/response';
 import { authenticateUser } from 'middleware/authentication';
 import { handleError } from 'middleware/errors';
 import { RouteNotFoundError } from 'errors';
+import "express-async-errors";
 
 import { attachPublicRoutes, attachPrivateRoutes } from './routes';
 
@@ -32,6 +33,10 @@ const initializeExpress = (): void => {
   attachPublicRoutes(app);
 
   app.use('/', authenticateUser);
+
+  // app.get('/', function(req, res){
+  //   res.send('<h1>Hello world</h1>');
+  // });
 
   attachPrivateRoutes(app);
 
